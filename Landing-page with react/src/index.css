@@ -1,0 +1,17 @@
+*{
+    list-style: none;
+    text-decoration: none;
+}
+
+.line-height{
+    line-height: 1.9rem;
+}
+
+.services{
+    transform: scale(0.99);
+    transition: 0.2s linear all;
+}
+
+.services:hover{
+    transform: scale(1);
+}
