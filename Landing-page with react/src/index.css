@@ -8,10 +8,22 @@
 }
 
 .services{
-    transform: scale(0.99);
+    /* transform: scale(0.99); */
     transition: 0.2s linear all;
 }
 
 .services:hover{
-    transform: scale(1);
+    box-shadow: 10px 10px 30px rgb(162, 160, 160);
+}
+
+.explore-btn{
+    border: 1px solid #fa7070;
+    border-radius: 30px;
+    color: #fa7070;
+    font-weight: 600;   
+}
+
+.explore-btn:hover{
+    background-color: #fa7070;
+    color: white;
 }

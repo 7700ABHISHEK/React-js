@@ -1,12 +1,10 @@
+import Heading from "./Heading"
 
 const FrequentlyAskQuestion = () => {
     return (
         <section id="questions" className="pt-5">
             <div className="container">
-                <div className="heading text-center">
-                    <h5 className="text-secondary">Frequently Ask Questions</h5>
-                    <h1>Want to ask something from us?</h1>
-                </div>
+                < Heading main = "Frequently ask Question" des = "Want to ask something from us?"/>
                 <div className="row">
                     <div className="states">
                         <div className="courses">

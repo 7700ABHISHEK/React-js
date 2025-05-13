@@ -1,14 +1,18 @@
 import Accordion from "./components/Accordion"
 import FrequentlyAskQuestion from "./components/FrequentlyAskQuestion"
 import Header from "./components/header"
-import MainSection from "./components/mainSection"
+import OurService from "./components/OurService"
 
 const App = () => {
+    const serviceHeading1 = 'New sharing made for people'
+    const serviceHeading2 = 'One integrated solution Manage'
+    const serviceHeading3 = 'Thousand of features and Custom option.'
+
     return (
         <div>
             <Header />
             <div className="container">
-                <MainSection />
+                <OurService/>
                 <FrequentlyAskQuestion />
                 <Accordion />
             </div>
