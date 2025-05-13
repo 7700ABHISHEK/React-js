@@ -2,6 +2,8 @@ import Accordion from "./components/Accordion"
 import FrequentlyAskQuestion from "./components/FrequentlyAskQuestion"
 import Header from "./components/header"
 import OurService from "./components/OurService"
+import OurTeam from "./components/OurTeam"
+import Service2 from "./components/Service2"
 
 const App = () => {
     const serviceHeading1 = 'New sharing made for people'
@@ -15,6 +17,8 @@ const App = () => {
                 <OurService/>
                 <FrequentlyAskQuestion />
                 <Accordion />
+                <Service2 />
+                <OurTeam />
             </div>
         </div>
     )

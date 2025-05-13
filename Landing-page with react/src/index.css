@@ -13,7 +13,11 @@
 }
 
 .services:hover{
-    box-shadow: 10px 10px 30px rgb(162, 160, 160);
+    box-shadow: 10px 10px 30px rgb(193, 191, 191);
+}
+
+.text-color{
+    color: #fa7070; 
 }
 
 .explore-btn{
