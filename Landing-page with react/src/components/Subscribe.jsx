@@ -2,7 +2,7 @@ import React from 'react'
 
 const Subscribe = () => {
     return (
-        <section className='main padding my-5'>
+        <section className='main padding mt-5'>
             <div className="container">
                 <div className="subscribe2">
                     <h1 className='text-center text-white fw-bold display-6'>
@@ -20,7 +20,7 @@ const Subscribe = () => {
                             </div>
                         </div>
                         <div className="col-md-5">
-                            <div>
+                            <div className='d-flex justify-content-center'>
                                 <button className='btn explore-btn py-3 px-5'>Subscribe</button>
                             </div>
                         </div>

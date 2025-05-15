@@ -25,7 +25,11 @@ const Main = () => {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center my-5">
-                    <img src="https://saaspik.pixelsigns.art/saaspik/media/banner/mockup3.jpg" alt="promotion" className='promotion-img rounded' width="100%" height="100%"/>
+                    <div style={{
+                        maxWidth: "970px",
+                    }}>
+                        <img src="https://saaspik.pixelsigns.art/saaspik/media/banner/mockup3.jpg" alt="promotion" className='img-fluid promotion-img rounded' width="100%" height="100%"/>
+                    </div>
                 </div>
             </div>
         </section>

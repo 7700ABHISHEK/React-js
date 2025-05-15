@@ -1,7 +1,7 @@
 
 const Header = () => {
     return (
-        <header>
+        <header className="sticky-top ">
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container">
                     <a className="navbar-brand text-white" href="#">

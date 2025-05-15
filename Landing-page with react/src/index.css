@@ -31,7 +31,7 @@
 
 .explore-btn:hover {
     background-color: #fa7070;
-    color: white;
+    color: white !important;
 }
 
 header .navbar {
@@ -74,7 +74,7 @@ header .navbar {
 }
 
 .padding{
-    padding: 120px;
+    padding: 80px;
 }
 
 .input{
@@ -93,4 +93,28 @@ header .navbar {
     background: transparent;
     box-shadow: none !important;
     border-bottom: 1px solid white;
+}
+
+@media (max-width: 500px) {
+    .padding{
+        padding: 20px;
+    }
+}
+
+footer{
+    background-color: #fdf8f8;
+}
+
+.footer-info ul li{
+    color: #797687;
+    font-weight: 600;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.color-footer{
+    color: #797687;
+    font-weight: 600;
+    line-height: 37px;
+    font-size: 16px;
 }
