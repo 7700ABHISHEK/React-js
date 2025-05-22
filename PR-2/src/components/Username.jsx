@@ -8,7 +8,7 @@ const Username = () => {
 
     
     useEffect(() => {
-        
+        console.log("Hello");
         const apiCall = async () => {
             
             if (!query) {
@@ -44,7 +44,7 @@ const Username = () => {
             <div className='flex justify-center items-center'>
                 <div className="w-full max-w-sm mt-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     {
-                        Object.keys == 0 ? <div>
+                        Object.keys(user) == 0 ? <div>
                             <h1>Not Found</h1>
                         </div>
                         :
