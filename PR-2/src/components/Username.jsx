@@ -76,13 +76,13 @@ const Username = () => {
                         </div>
                     ) : (
                         Object.keys(user).length !== 0 && (
-                            <div className="flex mt-10 flex-col items-center pb-10" ref={cardRef}>
+                            <div className="flex mt-10 flex-col items-center pb-10 px-10" ref={cardRef}>
                                 <img
                                     className="w-24 h-24 mb-3 rounded-full shadow-lg"
                                     src={user.avatar_url || null}
                                     alt="User avatar"
                                 />
-                                <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                                <h5 className="mb-1 text-xl font-medium text-gray-900 mb-5 dark:text-white">
                                     {user.name || user.login}
                                 </h5>
                                 <span className="text-sm text-gray-500 dark:text-gray-400">
