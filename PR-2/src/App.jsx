@@ -3,7 +3,7 @@ import Username from './components/Username'
 
 const App = () => {
     return (
-        <div className='container m-auto p-3'>
+        <div className='m-auto'>
             <Username />
         </div>
     )

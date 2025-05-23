@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import domtoimage from 'dom-to-image';
 
 const Username = () => {
@@ -12,7 +12,7 @@ const Username = () => {
         const node = cardRef.current;
         if (!node) return;
 
-        domtoimage.toPng(node)
+        domtoimage.toPng(node, { bgcolor: 'black' })
             .then((dataUrl) => {
                 const link = document.createElement('a');
                 link.download = 'profile_card.png';
@@ -47,61 +47,81 @@ const Username = () => {
     }, [query]);
 
     return (
-        <>
-            <h1 className='text-4xl text-center text-black font-semibold'>GitHub Users API</h1>
+        <div className="min-h-screen bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 p-6">
+            <h1 className="text-5xl font-extrabold text-center text-white mb-8 animate__animated animate__fadeInDown">
+                GitHub Profile Hunter
+            </h1>
 
-            <div className='flex justify-center my-10'>
+            <div className="flex justify-center gap-4 mb-10 animate__animated animate__fadeInUp">
                 <input
                     type="text"
-                    className='rounded-3xl border px-4 py-2'
+                    className="w-64 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-600"
                     placeholder="Enter GitHub username"
+                    value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                 />
                 <button
-                    className='mx-2 py-2 px-6 rounded-[10px] bg-cyan-700 text-white hover:bg-cyan-600'
                     onClick={() => {
                         setQuery(userName.trim());
                         setHasSearched(true);
                     }}
+                    className="px-6 py-2 bg-cyan-700 text-white rounded-full hover:bg-cyan-600 transition"
                 >
                     Search
                 </button>
             </div>
 
-            <div className='flex justify-center items-center'>
-                <div className="w-full max-w-sm mt-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex justify-center">
+                <div className="w-full max-w-md bg-white border border-gray-200 rounded-xl shadow-lg p-6">
                     {hasSearched && Object.keys(user).length === 0 ? (
-                        <div className="text-center p-5">
-                            <h1 className="text-lg text-red-600 font-semibold">User Not Found</h1>
+                        <div className="text-center py-10">
+                            <h2 className="text-xl font-semibold text-red-600">User Not Found</h2>
                         </div>
                     ) : (
                         Object.keys(user).length !== 0 && (
-                            <div className="flex mt-10 flex-col items-center pb-10 px-10" ref={cardRef}>
-                                <img
-                                    className="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                    src={user.avatar_url || null}
-                                    alt="User avatar"
-                                />
-                                <h5 className="mb-1 text-xl font-medium text-gray-900 mb-5 dark:text-white">
-                                    {user.name || user.login}
-                                </h5>
-                                <span className="text-sm text-gray-500 dark:text-gray-400">
-                                    {user.bio || 'No bio available'}
-                                </span>
-                                <div className="mt-4 md:mt-6">
+                            <>
+                                <div
+                                    ref={cardRef}
+                                    className="flex flex-col items-center bg-black text-white p-8 rounded-lg shadow-md">
+                                    <img
+                                        className="w-24 h-24 rounded-full border-4 border-white shadow mb-4 animate__animated animate__zoomIn"
+                                        src={user.avatar_url}
+                                        alt="User avatar"
+                                    />
+                                    <h2 className="text-2xl font-semibold mb-2">{user.name || user.login}</h2>
+                                    <p className="text-sm text-gray-300 text-center">
+                                        {user.bio || 'No bio available'}
+                                    </p>
+                                    <div className='flex my-6 gap-11'>
+                                        <div>
+                                            <p className='text-center'>{user.followers}</p>
+                                            <h5>Followers</h5>
+                                        </div>
+                                        <div>
+                                            <p className='text-center'>{user.following}</p>
+                                            <h5>Following</h5>
+                                        </div>
+                                        <div>
+                                            <p className='text-center'>{user.public_repos}</p>
+                                            <h5>Repos</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex justify-center mt-6">
                                     <button
                                         onClick={downloadCard}
-                                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        className="px-5 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition"
                                     >
-                                        Download
+                                        Download Profile Card
                                     </button>
                                 </div>
-                            </div>
+                            </>
                         )
                     )}
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
