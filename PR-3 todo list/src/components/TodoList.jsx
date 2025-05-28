@@ -38,11 +38,19 @@ const TodoList = () => {
 
     const markAsComplete = (id) => {
         const updatedTask = tasks.map((task) =>
-            task.id === id ? {...task, isDone: true } : task
+            task.id === id ? { ...task, isDone: true } : task
         );
 
         setTasks(updatedTask);
     };
+
+    const deleteTask = (id) => {
+        const deletedTask = tasks.filter((task) => {
+            return task.id !== id
+        })
+        setTasks(deletedTask);
+    }
+
 
     return (
         <div className="min-h-screen bg-gradient-to-tr from-slate-100 to-slate-200 py-10 px-4">
@@ -120,6 +128,9 @@ const TodoList = () => {
                                                             Mark as completed
                                                         </button>
                                                     )}
+                                                    <button className='ml-7 text-red-600 hover:underline font-semibold' onClick={() => {
+                                                        deleteTask(task.id);
+                                                    }}>Delete Task 🗑️</button>
                                                 </td>
                                             </tr>
                                         ))
@@ -140,7 +151,7 @@ const TodoList = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 };
 
