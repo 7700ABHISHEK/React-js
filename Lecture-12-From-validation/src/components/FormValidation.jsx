@@ -1,64 +1,90 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const FormValidation = () => {
 
-    const [input, setInput] = useState({});
+    const [input, setInput] = useState({
+        fname: '', lname: '', email: '', phone: '', password: '', cpassword: ''
+    });
+    const [errors, setErrors] = useState({});
+
+    const formRef = useRef(null);
+
+    const handleChange = (e) => {
+        setInput({ ...input, [e.target.id]: e.target.value }); // dynamic keys
+    }
+
+    console.log(input);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        let validationErrors = {}
+
+        if(input.fname.trim() === ''){
+            validationErrors.fname = "Please Enter proper first name";
+        }
+
+        if(input.lname.trim() === ''){
+            validationErrors.lname = "Please Enter proper last name";
+        }
+
+        if(input.password.trim() === '' || input.password.length < 8){
+            validationErrors.password = "Please Enter a strong password";
+        }
+
+        if(input.cpassword.trim() === '' || input.cpassword !== input.password){
+            validationErrors.cpassword = "Password and Confirm Password Should Match";
+        }
+
+        setErrors(validationErrors);
+
+        if(Object.keys(validationErrors).length == 0){
+            formRef.current.submit();
+        }
+    }
+
+    console.log(errors);
 
     return (
-        <div className='container mx-auto px-5'>
+        <div className='container mx-auto my-4 px-10'>
 
-            <h1 className='my-8 font-semibold text-center text-5xl'>Form Validation</h1>
+            <h1 className='my-8 font-semibold text-center text-3xl'>Form Validation</h1>
 
-            <form>
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
-                    <div>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 ">First name</label>
-                        <input type="text" id="first_name" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" onChange={()=>{
-                            
-                        }} required />
+            <form onSubmit={handleSubmit} ref={formRef}>
+                <div>
+                    <div className="grid gap-6 mb-6 md:grid-cols-2">
+                        <div>
+                            <label htmlFor="fname" className="block mb-2 text-sm font-medium text-gray-900 ">First name</label>
+                            <input type="text" id="fname" className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required onChange={handleChange} value={input.fname} />
+                        </div>
+                        <div>
+                            <label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 ">Last name</label>
+                            <input type="text" id="lname" className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" required onChange={handleChange} value={input.lname} />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Email address</label>
+                            <input type="email" id="email" className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" placeholder="john.doe@company.com" required onChange={handleChange} value={input.email}/>
+                        </div>
+                        <div>
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 ">Phone number</label>
+                            <input type="tel" id="phone" className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678" required onChange={handleChange} value={input.phone}/>
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                            <input type="password" id="password" className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required onChange={handleChange} value={input.password}/>
+                        </div>
+                        <div>
+                            <label htmlFor="cpassword" className="block mb-2 text-sm font-medium text-gray-900 ">Confirm password</label>
+                            <input type="password" id="cpassword" className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required onChange={handleChange} value={input.cpassword}/>
+                        </div>
                     </div>
-                    <div>
-                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 ">Last name</label>
-                        <input type="text" id="last_name" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" onChange={()=>{
-                            
-                        }} required />
-                    </div>
-                    <div>
-                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 ">Phone number</label>
-                        <input type="tel" id="phone" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="123-45-678" onChange={()=>{
-                            
-                        }} required />
-                    </div>
-                    <div class="">
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email address</label>
-                        <input type="email" id="email" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" onChange={()=>{
-                            
-                        }} required />
-                    </div>
-                    <div class="">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                        <input type="password" id="password" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" onChange={()=>{
-                            
-                        }} required />
-                    </div>
-                    <div class="">
-                        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 ">Confirm password</label>
-                        <input type="password" id="confirm_password" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" onChange={()=>{
-                            
-                        }} required />
-                    </div>
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                 </div>
-                <div class="flex items-start mb-6">
-                    <div class="flex items-center h-5">
-                        <input id="remember" type="checkbox" value="" class="w-4 h-4 border-2 border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
-                    </div>
-                    <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
-                </div>
-                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
             </form>
 
         </div>
     )
 }
 
-export default FormValidation
+export default FormValidation;
