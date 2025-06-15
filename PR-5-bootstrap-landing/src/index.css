@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+}
+
+.lato-sans{
+    font-family: "Lato", sans-serif;
+}
+
+.pacifico{
+    font-family: 'Pacifico', cursive;
+}
+
+.background-img-class{
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    object-fit: cover;
+}
+
+.hero{
+    background-image: url("https://tk-themes.me/html/html-organici/html/images/banner/banner-1.jpg");
+}
+
+.fs-12px{
+    font-size: 12px;
+}
+
+.read:hover{
+    background-color: #DC3545 !important;
+    color: white !important;
+}
+
+.header-text{
+    position: relative;
+    cursor: pointer;
+}
+
+.header-text::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    border: 1px solid brown;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    transition: 0.4s all;
+}
+
+.header-text:hover::after{
+    width: 100%;
+    visibility: visible;
+    left: 0;
+}
+
+@media (max-width: 500px) {
+    .hero p{
+        display: none;
+    }
+
+    .hero-button button{
+        font-size: 12px;
+    }
+}
+
+.feature-product{
+    background-image: url("https://tk-themes.me/html/html-organici/html/images/bg.jpg");
+    overflow: hidden;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.01);
+    transition: transform 0.3s ease;
+}
+
+.fruit-veg{
+    background-image: url("https://tk-themes.me/html/html-organici/html/images/image-background.jpg");
+}
+
+.social-media-icon li:hover{
+    background-color: #DC3545;
+    color: white;
+    transition: 0.6s all;
+}
