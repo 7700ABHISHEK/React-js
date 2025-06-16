@@ -96,3 +96,7 @@
     color: white;
     transition: 0.6s all;
 }
+
+.new-product{
+    background-image: url("https://tk-themes.me/html/html-organici/html/images/bg_our_product.jpg");
+}

@@ -10,6 +10,10 @@ import OurNewProduct from './components/OurNewProduct';
 import FruitsVeg from './components/FruitsVeg';
 import CustomerReview from './components/CustomerReview';
 import Footer from './components/Footer';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 
 const App = () => {
     return (
