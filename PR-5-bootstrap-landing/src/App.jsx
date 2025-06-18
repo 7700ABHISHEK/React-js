@@ -8,11 +8,11 @@ import DealOfTheDay from './components/DealOfTheDay';
 import OrganicProduct from './components/OrganicProduct';
 import OurNewProduct from './components/OurNewProduct';
 import FruitsVeg from './components/FruitsVeg';
-import CustomerReview from './components/CustomerReview';
 import Footer from './components/Footer';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import TestimonialSection from './components/CustomerReview';
 
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
             <OrganicProduct />
             <OurNewProduct />
             <FruitsVeg />
-            <CustomerReview />
+            <TestimonialSection />
             <Footer />
         </div>
     )
