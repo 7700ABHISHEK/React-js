@@ -11,7 +11,7 @@ const UserList = ({ users, deleteUser, getEditUser }) => {
     }
 
     return (
-        <div className='container mx-auto py-16'>
+        <div className='container mx-auto px-12 py-16'>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 {
                     users.length > 0 ?

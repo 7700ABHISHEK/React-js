@@ -87,7 +87,7 @@ const ProductCart = () => {
             >
                 {
                     productsArr.map((product, idx) =>
-                        <SwiperSlide>
+                        <SwiperSlide key={product.id}>
                             <div className="product-details bg-white border">
                                 <div className='product-img'>
                                     <img src={product.image} className='img-fluid' alt="fruit" />

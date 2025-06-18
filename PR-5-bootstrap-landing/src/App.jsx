@@ -12,8 +12,7 @@ import Footer from './components/Footer';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import TestimonialSection from './components/CustomerReview';
-
+import TestimonialSection from './components/TestimonialSection';
 
 const App = () => {
     return (
