@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setIsLogin }) => {
+    const [input, setInput] = useState({
+        email: '', password: '',
+    });
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setInput({ ...input, [e.target.id]: e.target.value });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (input.email === "admin@gmail.com" && input.password === "admin@123") {
+            localStorage.setItem("isLogin", JSON.stringify(true));
+            setIsLogin(true);
+            navigate("/employees")
+        }
+
+    }
+
+
     return (
         <div className="my-vh bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
             <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
@@ -10,7 +33,7 @@ const Login = () => {
                 </div>
 
                 {/* Form */}
-                <div className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                     {/* Email Field */}
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -19,8 +42,10 @@ const Login = () => {
                         <input
                             type="email"
                             id="email"
+                            value={input.email}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 placeholder-gray-400"
                             placeholder="Enter your email"
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -32,19 +57,20 @@ const Login = () => {
                         <input
                             type="password"
                             id="password"
+                            value={input.password}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 placeholder-gray-400"
                             placeholder="Enter your password"
+                            onChange={handleChange}
                         />
                     </div>
 
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105"
-                    >
+                        className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105">
                         Sign In
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     )

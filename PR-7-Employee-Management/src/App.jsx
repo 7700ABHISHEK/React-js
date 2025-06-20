@@ -6,17 +6,27 @@ import About from "./pages/About"
 import Service from "./pages/Service"
 import Contact from "./pages/Contact"
 import Employees from "./pages/Employees"
+import { useEffect, useState } from "react"
+import ProtectedRoute from "./components/ProtectedRoute"
 const App = () => {
+
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        const isLoggedIn = JSON.parse(localStorage.getItem("isLogin")) || false;
+        setIsLogin(isLoggedIn);
+    }, [])
+
     return (
         <BrowserRouter>
-            <Header />
+            <Header setIsLogin={setIsLogin}/>
             <Routes>
                 <Route path="/" element={<Home />}/>
                 <Route path="/about" element={<About />}/>
-                <Route path="/service" element={<Service />}/>
+                <Route path="/service" element={<Service />} />
                 <Route path="/contact" element={<Contact />}/>
-                <Route path="/employees" element={<Employees />}/>
-                <Route path="/login" element={<Login />}/>
+                <Route path="/employees" element={<ProtectedRoute Component={Employees}/>}/>
+                <Route path="/login" element={<Login setIsLogin={setIsLogin}/>} />
             </Routes>
         </BrowserRouter>
     )
