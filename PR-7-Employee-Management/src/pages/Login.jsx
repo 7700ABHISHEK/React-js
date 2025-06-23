@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = ({ setIsLogin }) => {
     const [input, setInput] = useState({
         email: '', password: '',
     });
+    const [errors, setErrors] = useState({});
 
     const navigate = useNavigate();
 
@@ -15,12 +17,26 @@ const Login = ({ setIsLogin }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const validationErrors = {};
+
+        if (input.password.trim() == '' || input.password.trim().length < 8) {
+            validationErrors.password = "Please Enter Valid Password";
+        }
+
+        setErrors(validationErrors);
+
+        if(Object.keys(validationErrors).length > 0){
+            return;
+        }
+
         if (input.email === "admin@gmail.com" && input.password === "admin@123") {
             localStorage.setItem("isLogin", JSON.stringify(true));
             setIsLogin(true);
             navigate("/employees")
+            toast.success("LoggedIn Successfully...")
+        } else{
+            toast.error("Please Enter Valid Email or Password...")
         }
-
     }
 
 
@@ -45,6 +61,9 @@ const Login = ({ setIsLogin }) => {
                             value={input.email}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 placeholder-gray-400"
                             placeholder="Enter your email"
+                            pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                            title="Please enter a valid email address"
+                            required
                             onChange={handleChange}
                         />
                     </div>
@@ -62,6 +81,9 @@ const Login = ({ setIsLogin }) => {
                             placeholder="Enter your password"
                             onChange={handleChange}
                         />
+                        {
+                            errors && <p className='text-red-600 font-semibold'>{errors.password}</p>
+                        }
                     </div>
 
                     {/* Submit Button */}

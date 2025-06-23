@@ -9,6 +9,8 @@ import Employees from "./pages/Employees"
 import { useEffect, useState } from "react"
 import ProtectedRoute from "./components/ProtectedRoute"
 import AddEmployee from "./pages/AddEmployee"
+import { ToastContainer } from "react-toastify"
+import EditEmployees from "./pages/EditEmployees"
 const App = () => {
 
     const [isLogin, setIsLogin] = useState(false);
@@ -20,6 +22,7 @@ const App = () => {
 
     return (
         <BrowserRouter>
+            <ToastContainer />
             <Header setIsLogin={setIsLogin} />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -28,6 +31,7 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/employees" element={<ProtectedRoute Component={Employees} />} />
                 <Route path="/add-employees" element={<ProtectedRoute Component={AddEmployee} />} />
+                <Route path="/edit-employee/:id" element={<ProtectedRoute Component={EditEmployees} />} />
                 <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
             </Routes>
         </BrowserRouter>

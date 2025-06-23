@@ -1,22 +1,40 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
-const AddEmployee = () => {
+const EditEmployees = () => {
 
     const [input, setInput] = useState({
         name: '', salary: '', department: ''
-    });
+    })
 
     const [errors, setErrors] = useState({});
 
+    const { id } = useParams();
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+
+        const employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+        const data = employees.find((employee) => String(employee.id) == id)
+
+        if (data) {
+            setInput(data);
+        } else {
+            toast.error("No Employee Found With This ID");
+            navigate("/employees")
+        }
+
+    }, [id])
+
 
     const handleChange = (e) => {
         setInput({ ...input, [e.target.id]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
 
         const validationErrors = {}
@@ -39,25 +57,28 @@ const AddEmployee = () => {
             return;
         }
 
-        const employeesDetail = { ...input, id: Date.now() };
-
         const employees = JSON.parse(localStorage.getItem("employees")) || [];
-        employees.push(employeesDetail);
 
-        localStorage.setItem("employees", JSON.stringify(employees))
+        const UpdatedEmployees = employees.map((employee) => {
+            return employee.id == id ? {
+                ...employee, ...input
+            } : employee;
+        });
+
+        localStorage.setItem("employees", JSON.stringify(UpdatedEmployees));
+        toast.success("Employee Details Updated Successfully");
         setInput({ name: '', salary: '', department: '' });
-        navigate('/employees');
-        toast.success("Employee Added Successfully...");
+        navigate("/employees");
     }
 
     return (
         <div className="container mx-auto p-10">
 
             <div>
-                <h1 className="text-center text-3xl font-semibold mb-10 text-teal-600">Add Employee Here</h1>
+                <h1 className="text-center text-3xl font-semibold mb-10 text-teal-600">Edit Employee Here</h1>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleUpdate}>
                 <div>
                     <div className="flex flex-wrap items-center">
                         <div className="w-6/12 px-3 mb-6">
@@ -88,7 +109,7 @@ const AddEmployee = () => {
                             }
                         </div>
                         <div className="w-6/12 px-3">
-                            <button type="submit" className="text-white bg-indigo-700 py-2 rounded px-6 hover:bg-indigo-800 font-semibold transition" >Submit</button>
+                            <button type="submit" className="text-white bg-indigo-700 py-2 rounded px-6 hover:bg-indigo-800 font-semibold transition" >Update</button>
                         </div>
                     </div>
 
@@ -98,4 +119,4 @@ const AddEmployee = () => {
     )
 }
 
-export default AddEmployee
+export default EditEmployees

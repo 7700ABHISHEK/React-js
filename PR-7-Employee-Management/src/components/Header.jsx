@@ -12,7 +12,7 @@ const Header = ({ setIsLogin }) => {
     return (
         <div>
             <nav className="bg-white border-b border-gray-200">
-                <div className="container flex flex-wrap items-center justify-between mx-auto px-10 py-5">
+                <div className="container flex flex-wrap items-center justify-between mx-auto px-10 py-4">
                     <Link to={"/"} className="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
@@ -33,7 +33,7 @@ const Header = ({ setIsLogin }) => {
                             </li>
                             {
                                 isLogin && <li>
-                                    <Link to={"/employees"} className={`${pathname == '/employees' || pathname == '/add-employees'? 'text-teal-700' : "text-gray-900 hover:text-teal-700"}`}>Employees</Link>
+                                    <Link to={"/employees"} className={`${pathname == '/employees' || pathname == '/add-employees' || pathname.includes("edit-employee") ? 'text-teal-700' : "text-gray-900 hover:text-teal-700"}`}>Employees</Link>
                                 </li>
                             }
                             {
