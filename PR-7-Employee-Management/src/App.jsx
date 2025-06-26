@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import AddEmployee from "./pages/AddEmployee"
 import { ToastContainer } from "react-toastify"
 import EditEmployees from "./pages/EditEmployees"
+import 'remixicon/fonts/remixicon.css'
 const App = () => {
 
     const [isLogin, setIsLogin] = useState(false);

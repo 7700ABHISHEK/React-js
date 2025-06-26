@@ -24,7 +24,6 @@ const Employees = () => {
     };
 
     const filteredArr = employees.filter((employee) => {
-        console.log(filter);
         if (filter.search === '') {
             return employee;
         } else {
@@ -33,8 +32,6 @@ const Employees = () => {
     }).filter((employee) => {
         return filter.department === '' ? true : employee.department == filter.department
     })
-
-    console.log(filteredArr);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white p-6">
@@ -46,7 +43,7 @@ const Employees = () => {
                             id="department"
                             value={filter.department}
                             onChange={(e) => {
-                                setFilter({...filter, [e.target.id]: e.target.value})
+                                setFilter({ ...filter, [e.target.id]: e.target.value })
                             }}
                             className="px-2 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         >
@@ -63,7 +60,7 @@ const Employees = () => {
                             className="w-52 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-200"
                             placeholder="Search Your Employee"
                             onChange={(e) => {
-                                setFilter({...filter, [e.target.id]: e.target.value});
+                                setFilter({ ...filter, [e.target.id]: e.target.value });
                             }}
                         />
                         <button
@@ -76,12 +73,12 @@ const Employees = () => {
                     </div>
                 </div>
 
-                {employees.length > 0 ? (
+                {filteredArr.length > 0 ? (
                     <div className="overflow-x-auto rounded-lg">
-                        <EmployeesTable employees={filteredArr} deleteEmployee={deleteEmployee} />
+                        <EmployeesTable employees={filteredArr} deleteEmployee={deleteEmployee} setEmployees={setEmployees} />
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center py-20">
+                    <div className="flex flex-col items-center justify-center text-center">
                         <img
                             src="/public/NO-Employee.webp"
                             alt="No Employee"
@@ -91,7 +88,7 @@ const Employees = () => {
                             No Employees Found
                         </h2>
                         <p className="text-gray-500 mt-2 text-center max-w-md">
-                            You haven't added any employee yet. Click the button above to start adding employee details.
+                            You haven't added any employee with this name. Click the button above to start adding employee details.
                         </p>
                     </div>
                 )}

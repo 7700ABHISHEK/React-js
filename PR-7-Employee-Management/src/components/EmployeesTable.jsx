@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EmployeesTable = ({ employees, deleteEmployee }) => {
+const EmployeesTable = ({ employees, deleteEmployee, setEmployees }) => {
+
+    const [sort, setSort] = useState(null)
+
+    useEffect(() => {
+        if (!sort) return;
+
+        if (sort == "ASC") {
+            const sortedEmployees = employees.sort((a, b) => a.salary - b.salary);
+            setEmployees(sortedEmployees);
+        } else {
+            const sortedEmployees = employees.sort((a, b) => b.salary - a.salary);
+            setEmployees(sortedEmployees);
+        }
+    }, [sort]);
 
     const getDepartment = (id) => {
         switch (id) {
@@ -21,19 +36,28 @@ const EmployeesTable = ({ employees, deleteEmployee }) => {
         deleteEmployee(id);
     };
 
+    const handleSort = () => {
+        setSort(sort == "ASC" ? "DSC" : "ASC")
+    }
+
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-100 dark:bg-gray-800">
                     <tr>
                         <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                            #
+                            Number
                         </th>
                         <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                             Name
                         </th>
-                        <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                            Salary (₹)
+                        <th scope="col" className="px-6 flex gap-5 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            <p>Salary (₹)</p>
+                            <div className="w-10 text-black cursor-pointer" onClick={handleSort}>
+                                {
+                                    sort == "ASC" ? <i class="ri-sort-asc"></i> : <i class="ri-sort-desc"></i>
+                                }
+                            </div>
                         </th>
                         <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                             Department
@@ -43,6 +67,7 @@ const EmployeesTable = ({ employees, deleteEmployee }) => {
                         </th>
                     </tr>
                 </thead>
+
                 <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-100 dark:divide-gray-800">
                     {employees.map((employee, idx) => (
                         <tr
