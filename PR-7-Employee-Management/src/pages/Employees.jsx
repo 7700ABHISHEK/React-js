@@ -89,7 +89,7 @@ const Employees = () => {
                         <h2 className="text-2xl font-semibold text-gray-700">
                             No Employees Found
                         </h2>
-                        <p className="text-gray-500 mt-2 text-center max-w-md">
+                        <p className="text-gray-500 mt-2 text-center max-w-md ">
                             You haven't added any employee with this name. Click the button above to start adding employee details.
                         </p>
                     </div>
