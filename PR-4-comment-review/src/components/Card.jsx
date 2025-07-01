@@ -36,10 +36,10 @@ const FormCard = () => {
 
         // intially isEditing is false...
         if (isEditing) { // When someone clicked on edit icon isEditing will become true then it will check
-            const updatedReview = reviews.map((review) = 
-                review.id === editingId ? // checking editingId here with reviewId
-                    { ...review, ...input } : // if match then will pass that review with changed inputs
-                    review // else will pass whole review
+            const updatedReview = reviews.map((review) =>
+                    review.id === editingId
+                    ? { ...review, ...input, date: new Date(input.date).toLocaleDateString() }
+                    : review
             );
             setReviews(updatedReview);
 
@@ -180,10 +180,10 @@ const FormCard = () => {
                                     onClick={handleSubmit}
                                     className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center"
                                 >
-                                    
-                                    {/* if isEditing is true then showing update button else submit button */ }
 
-                                    {isEditing ? ( 
+                                    {/* if isEditing is true then showing update button else submit button */}
+
+                                    {isEditing ? (
                                         <>
                                             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -206,7 +206,7 @@ const FormCard = () => {
                     {/* Review List */}
                     <div className="lg:col-span-2">
 
-                        {/* if thier is no review then showing no review else showing reviews */ }
+                        {/* if thier is no review then showing no review else showing reviews */}
 
                         {reviews.length === 0 ? (
                             <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 text-center">
@@ -258,7 +258,7 @@ const FormCard = () => {
                                             </div>
                                             <p className="text-gray-700 mb-4 leading-relaxed">{review.review}</p>
                                             <div className="flex justify-end space-x-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <button 
+                                                <button
                                                     onClick={() => handleEdit(review.id)}
                                                     className="text-blue-600 hover:text-blue-800 p-1 rounded-full hover:bg-blue-50 transition-colors"
                                                     title="Edit"
@@ -267,7 +267,7 @@ const FormCard = () => {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
                                                 </button>
-                                                <button 
+                                                <button
                                                     onClick={() => handleDelete(review.id)}
                                                     className="text-red-600 hover:text-red-800 p-1 rounded-full hover:bg-red-50 transition-colors"
                                                     title="Delete"

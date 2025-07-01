@@ -33,6 +33,8 @@ const Employees = () => {
         return filter.department === '' ? true : employee.department == filter.department
     })
 
+    console.log(filter);
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white p-6">
             <div className="max-w-7xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
@@ -80,7 +82,7 @@ const Employees = () => {
                 ) : (
                     <div className="flex flex-col items-center justify-center text-center">
                         <img
-                            src="/public/NO-Employee.webp"
+                            src="/NO-Employee.webp"
                             alt="No Employee"
                             className="w-60 h-auto mb-6 opacity-90"
                         />
