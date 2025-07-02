@@ -67,8 +67,8 @@ const UserList = ({ users, deleteUser, getEditUser }) => {
                             </tbody>
                         </table>
                         : 
-                        <div>
-                            <h1 className='text-red-600 font-semibold text-3xl text-center'>No User Found</h1>
+                        <div className='flex justify-center items-center'>
+                            <img src="/no-user.png" alt="No User Found" />
                         </div>
                 }
             </div>
