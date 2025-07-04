@@ -1,36 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 import Student from "../../pages/Student";
 
 const studentSlice = createSlice({
     name: "students",
     initialState: {
-        list: [
-            {
-                name: "Abhishek",
-                id: 1,
-                course: "FSD",
-                age: 20,
-                skill: "React"
-            },  
-
-            {
-                name: "Sujar",
-                id: 2,
-                course: "FSD",
-                age: 29,
-                skill: "HTML"
-            }
-        ],
+        list: [],
     },
     reducers: {
         addStudent: (state, action) => {
-
+            state.list.push({id: nanoid(), ...action.payload}); 
         },
 
         deleteStudent: (state, action) => {
-
+            state.list = state.list.filter((std) => {
+                return std.id !== action.payload;
+            })
         }
     }
 })
+
+export const {addStudent, deleteStudent} = studentSlice.actions;
 
 export default studentSlice.reducer;
